@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16
+    container_name: sportsbooklite-db
+    environment:
+      POSTGRES_DB: sportsbooklite
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sportsbooklite -d sportsbooklite"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # pgadmin:
+  #   image: dpage/pgadmin4:8
+  #   container_name: sportsbooklite-pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@sportsbooklite.local
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - db
+  #   restart: unless-stopped
+
+  adminer:
+    image: adminer
+    container_name: sportsbooklite-adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  db_data:
