@@ -4,6 +4,7 @@ import com.noelnp.sportsbooklite.dto.CreateUserRequest;
 import com.noelnp.sportsbooklite.dto.UserResponse;
 import com.noelnp.sportsbooklite.repository.UserRepository;
 import com.noelnp.sportsbooklite.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
         UserResponse created = userService.registerUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
 
