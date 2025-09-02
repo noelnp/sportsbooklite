@@ -1,4 +1,4 @@
-package com.noelnp.sportsbooklite.dto;
+package com.noelnp.sportsbooklite.dto.user;
 
 import java.time.LocalDateTime;
 

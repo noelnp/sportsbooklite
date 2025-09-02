@@ -1,7 +1,7 @@
 package com.noelnp.sportsbooklite.service;
 
-import com.noelnp.sportsbooklite.dto.CreateUserRequest;
-import com.noelnp.sportsbooklite.dto.UserResponse;
+import com.noelnp.sportsbooklite.dto.user.CreateUserRequest;
+import com.noelnp.sportsbooklite.dto.user.UserResponse;
 import com.noelnp.sportsbooklite.entity.User;
 import com.noelnp.sportsbooklite.repository.UserRepository;
 import lombok.AllArgsConstructor;

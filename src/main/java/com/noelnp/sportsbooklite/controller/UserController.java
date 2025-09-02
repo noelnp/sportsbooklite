@@ -1,8 +1,7 @@
 package com.noelnp.sportsbooklite.controller;
 
-import com.noelnp.sportsbooklite.dto.CreateUserRequest;
-import com.noelnp.sportsbooklite.dto.UserResponse;
-import com.noelnp.sportsbooklite.repository.UserRepository;
+import com.noelnp.sportsbooklite.dto.user.CreateUserRequest;
+import com.noelnp.sportsbooklite.dto.user.UserResponse;
 import com.noelnp.sportsbooklite.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,6 +21,11 @@ public class UserController {
         UserResponse created = userService.registerUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
 
+    }
+
+    @GetMapping("/exception")
+    public String getException() {
+        throw new IllegalStateException("Something went wrong");
     }
 
 
