@@ -1,6 +1,7 @@
 package com.noelnp.sportsbooklite.service;
 
 import com.noelnp.sportsbooklite.dto.user.CreateUserRequest;
+import com.noelnp.sportsbooklite.dto.user.UserMapper;
 import com.noelnp.sportsbooklite.dto.user.UserResponse;
 import com.noelnp.sportsbooklite.entity.User;
 import com.noelnp.sportsbooklite.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
     public UserResponse registerUser(CreateUserRequest request) {
@@ -26,12 +28,7 @@ public class UserService {
 
         User saved = userRepository.save(user);
 
-        return new UserResponse(
-                saved.getId(),
-                saved.getFirstName(),
-                saved.getLastName(),
-                saved.getEmail(),
-                saved.getCreatedAt());
+        return userMapper.toResponse(saved);
 
     }
 }
